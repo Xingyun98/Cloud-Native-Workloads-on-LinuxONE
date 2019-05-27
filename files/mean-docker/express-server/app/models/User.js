@@ -1,15 +1,20 @@
 var mongoose = require('mongoose');
 
 // Define the schema
-module.exports = mongoose.model('User', {
+module.exports = mongoose.model('user', {
     user_ID: {
         type: String,
-        default: '2333'
+        default: ''
+    },
+
+    user_PWD:{
+        type: String,
+        default:''
     },
 
     name: {
         type: String,
-        default: ''
+        default: '2333'
     },
 
     ContactMethod: {
@@ -20,6 +25,10 @@ module.exports = mongoose.model('User', {
     Rank:{
     	type: Number,
     	Default:'0'
-    }
+    },
 
+    bonus:{
+        type:Number,
+        default:'0'
+    }
 });
