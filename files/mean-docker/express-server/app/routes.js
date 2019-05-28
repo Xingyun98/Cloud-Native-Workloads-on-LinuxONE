@@ -1,5 +1,4 @@
 var Todo = require('./models/todo');
-
 var express = require('express');
 var router = express.Router();
 function getTodos(res) 
@@ -61,9 +60,9 @@ module.exports = function (app)
     });
 };
 
-/*
+
 //User
-var users = require('./models/user.js');
+var users = require('./models/user');
 function getUser(res) 
 {
     users.find(function (err, User) {
@@ -110,9 +109,9 @@ module.exports = function (app)
     });
 
     // delete a todo
-    app.delete('/api/User/:_id', function (req, res) {
+    app.delete('/api/User/:user_id', function (req, res) {
         users.remove({
-            _id: req.params._id
+            _id: req.params.user_id
         }, function (err, user) {
             if (err)
                 res.send(err);
@@ -122,12 +121,13 @@ module.exports = function (app)
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile(__dirname + '/public/index.html'); 
+        // load the single view file (angular will handle the page changes on the front-end)
     });
 };
 
 //Wish
-var wishes = require('./models/wish.js');
+var wishes = require('./models/wish');
 function getWish(res) 
 {
     wishes.find(function (err, Wish) {
@@ -189,4 +189,3 @@ module.exports = function (app)
         res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
-*/

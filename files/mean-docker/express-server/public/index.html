@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanTodo">
+<html ng-app="meanUser">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -31,22 +31,22 @@
 </head>
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="mainController"><!--mainController-->
+<body ng-controller="userController"><!--mainController-->
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Hi let us make an app for 666<span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>Hi let us make an app for Xingyun6<span class="label label-info">{{ User.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
-		<div id="user-list" class="row">
+		<div id="toso-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="user in User">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						<input type="checkbox" ng-click="deleteUser(User._id)"> {{ User.name }}
 					</label>
 				</div>
 
@@ -64,14 +64,14 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.name">
 
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.value">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.user_PWD">
 
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Submit</button>
 				</form>
 			</div>
 		</div>

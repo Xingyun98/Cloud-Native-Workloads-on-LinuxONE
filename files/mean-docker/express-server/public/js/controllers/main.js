@@ -73,7 +73,7 @@ angular.module('userController', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.user_ID != undefined) {
+			if ($scope.formData.name != undefined) {
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
