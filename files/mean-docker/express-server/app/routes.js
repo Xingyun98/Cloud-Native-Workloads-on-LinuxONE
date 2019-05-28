@@ -61,6 +61,7 @@ module.exports = function (app)
     });
 };
 
+/*
 //User
 var users = require('./models/user.js');
 function getUser(res) 
