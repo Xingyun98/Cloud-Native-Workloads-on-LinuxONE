@@ -1,4 +1,7 @@
 var Todo = require('./models/todo');
+
+var express = require('express');
+var router = express.Router();
 function getTodos(res) 
 {
     Todo.find(function (err, todos) {
@@ -59,7 +62,7 @@ module.exports = function (app)
 };
 
 //User
-var users = require('./models/user');
+var users = require('./models/user.js');
 function getUser(res) 
 {
     users.find(function (err, User) {
@@ -106,13 +109,12 @@ module.exports = function (app)
     });
 
     // delete a todo
-    app.delete('/api/User/:user_id', function (req, res) {
+    app.delete('/api/User/:_id', function (req, res) {
         users.remove({
-            _id: req.params.user_id
+            _id: req.params._id
         }, function (err, user) {
             if (err)
                 res.send(err);
-
             getUser(res);
         });
     });
@@ -124,7 +126,7 @@ module.exports = function (app)
 };
 
 //Wish
-var wishes = require('./models/wish');
+var wishes = require('./models/wish.js');
 function getWish(res) 
 {
     wishes.find(function (err, Wish) {

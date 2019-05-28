@@ -10,14 +10,17 @@ module.exports=mongoose.module('wish',{
 		type:String,
 		default:''
 	},
+
 	publish_date:{
 		type:String,
 		default:''
 	},
+
 	DDL:{
 		type:String,
 		default:''
 	},
+	
 	bonus:{
 		type:Number,
 		default:'0'
