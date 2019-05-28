@@ -29,6 +29,6 @@ module.exports = mongoose.model('user', {
 
     bonus:{
         type:Number,
-        default:'0'
+        default:'10'
     }
 });

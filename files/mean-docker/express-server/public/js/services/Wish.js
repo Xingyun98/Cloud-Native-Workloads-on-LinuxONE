@@ -7,7 +7,7 @@ angular.module('wishService', [])
 			get : function() {
 				return $http.get('/api/Wish');
 			},
-			create : function(todoData) {
+			create : function(wishData) {
 				return $http.post('/api/Wish', wishData);
 			},
 			delete : function(id) {

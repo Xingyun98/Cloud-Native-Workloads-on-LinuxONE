@@ -15,8 +15,8 @@
 	<style>
 		html 					{ overflow-y:scroll; }
 		body 					{ padding-top:50px; }
-		#user-list 				{ margin-bottom:30px; }
-		#user-form 	 			{ margin-bottom:50px; }
+		#todo-list 				{ margin-bottom:30px; }
+		#todo-form 	 			{ margin-bottom:50px; }
 	</style>
 
 	<!-- SPELLS -->
@@ -24,17 +24,19 @@
 
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
+	<script src="js/services/User.js"></script> <!-- load our todo service -->
+	<script src="js/services/Wish.js"></script> <!-- load our todo service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="userController"><!--mainController-->
+<body ng-controller="mainController"><!--mainController-->
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Hi let us make an app for 2333...<span class="label label-info">{{ User.length }}</span></h1>
+			<h1>Hi let us make an app for 666<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -44,7 +46,7 @@
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
 				<div class="checkbox" ng-repeat="user in User">
 					<label>
-						<input type="checkbox" ng-click="deleteUser(user._id)"> {{ User.name }}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
 					</label>
 				</div>
 
@@ -62,20 +64,14 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.user_ID">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.text">
 
-
-
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.user_PWD">
-
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.name">
-
-
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.value">
 
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Add</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Add</button>
 				</form>
 			</div>
 		</div>
