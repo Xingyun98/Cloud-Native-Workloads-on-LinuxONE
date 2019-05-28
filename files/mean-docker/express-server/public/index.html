@@ -31,12 +31,12 @@
 </head>
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="userController"><!--mainController-->
+<body ng-controller="todoController"><!--mainController-->
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Hi let us make an app for Xingyun6<span class="label label-info">{{ User.length }}</span></h1>
+			<h1>Hi let us make an app for Xingyun6<span class="label label-info">{{ todos.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
@@ -44,9 +44,9 @@
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="user in User">
+				<div class="checkbox" ng-repeat="todo in Todo">
 					<label>
-						<input type="checkbox" ng-click="deleteUser(User._id)"> {{ User.name }}
+						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
 					</label>
 				</div>
 
@@ -64,14 +64,17 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.text">
 
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.user_PWD">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.value">
 
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Submit</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Submit</button>
+					<p>
+                    <a href="./login.html"> 到登陆界面 </a>
+                   </p>
 				</form>
 			</div>
 		</div>
