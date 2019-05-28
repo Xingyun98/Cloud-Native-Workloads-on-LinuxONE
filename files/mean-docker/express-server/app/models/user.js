@@ -1,8 +1,7 @@
 var mongoose = require('mongoose');
-
-// Define the schema
-module.exports = mongoose.model('user', {
-    user_ID: {
+var Schema = mongoose.Schema;
+var userSchema = new Schema({
+	user_ID: {
         type: String,
         default: ''
     },
@@ -14,7 +13,7 @@ module.exports = mongoose.model('user', {
 
     name: {
         type: String,
-        default: '2333'
+        default: '666'
     },
 
     ContactMethod: {
@@ -30,5 +29,15 @@ module.exports = mongoose.model('user', {
     bonus:{
         type:Number,
         default:'10'
+    },
+
+    createAT:{
+    	type:Date,
+    	default:Date.now()
     }
+
 });
+}
+
+// 将数据模型暴露出去
+module.exports = mongoose.model('user',userSchema);

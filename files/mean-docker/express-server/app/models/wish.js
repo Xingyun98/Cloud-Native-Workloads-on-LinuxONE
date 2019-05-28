@@ -1,11 +1,12 @@
 var mongoose = require('mongoose');
 
 //Define the schema
-module.exports=mongoose.module('wish',{
-	Wish_ID:{
+module.exports=mongoose.module('wish', {
+	wish_ID:{
 		type:String,
 		default:''
 	},
+
 	description:{
 		type:String,
 		default:''
@@ -23,6 +24,6 @@ module.exports=mongoose.module('wish',{
 	
 	bonus:{
 		type:Number,
-		default:'0'
+		default:''
 	}
 });
