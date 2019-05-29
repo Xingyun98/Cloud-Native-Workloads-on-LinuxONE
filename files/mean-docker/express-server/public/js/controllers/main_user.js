@@ -1,8 +1,19 @@
-//userController
-angular.module('userController', [])
+var mainUser=angular.module("mainUser",[]);
+mainUser.factory('Users', ['$http',function($http) {
+		return {
+			get : function() {
+				return $http.get('/api/User');
+			},
+			create : function(userData) {
+				return $http.post('/api/User', userData);
+			},
+			delete : function(id) {
+				return $http.delete('/api/User/' + id);
+			}
+		}
+	}]);
 
-	// inject the Todo service factory into our controller
-	.controller('UserController', ['$scope','$http','Users', function($scope, $http, Users) {
+mainUser.controller('UserController', ['$scope','$http','Users', function($scope, $http, Users) {
 		$scope.formData = {};
 		$scope.loading = true;
 

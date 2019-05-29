@@ -90,6 +90,7 @@ module.exports = function (app)
             ContactMethod: req.body.ContactMethod,
             Rank: req.body.Rank,
             bonus: req.body.bonus,
+            createAt: req.body.createAt,
             done: false
         }, function (err, user) {
             if (err)
