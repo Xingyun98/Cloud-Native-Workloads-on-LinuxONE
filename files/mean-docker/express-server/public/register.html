@@ -1,31 +1,84 @@
 <!-- login.html -->
+<!doctype html>
+<html ng-app="meanTodo">
 
-<h1>注册页面</h1>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
-   <div>
-        <form action="/register" method="post">
-            <p>
-                <label for="user_ID">账号</label>
-                <input type="text" id="user_ID" name="user_ID" placeholder="账号">
-            </p>
-            <p>
-                <label for="user_PWD">密码 :</label>
-                <input type="text" id="password" name="password" placeholder="密码">
-            </p>
-            <p>
-                <label for="name">姓名 :</label>
-                <input type="text" id="name" name="name" placeholder="姓名">
-            </p>
-            <p>
-                <label for="ContactMethod">联系方式 :</label>
-                <input type="text" id="ContactMethod" name="ContactMethod" placeholder="联系方式">
-            </p>
-            <p>
-                <input type="submit" value="注册">
-            </p>
-            <p>
-            <a href="./login.html"> 到登陆界面 </a>
-            </p>
-        </form>
-    </div>
+<head> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+    <title>Node/Angular myApp</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #todo-list              { margin-bottom:30px; }
+        #todo-form              { margin-bottom:50px; }
+    </style>
+
+    <script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
+    <script src="js/controllers/main.js"></script> <!-- load up our controller -->
+    <script src="js/services/todos.js"></script><!-- load our todo service -->
+    <script src="js/core.js"></script> <!-- load our main application -->
+
+</head> 
+   
+    <body ng-controller="userController">
+        <div class="container">
+        
+        <div class="jumbotron text-center">
+            <h1>Hi let us register an app 233...<span class="label label-info">{{ User.length }}</span></h1>
+        </div>
+        <!-- TODO LIST -->
+        <div id="todo-list" class="row">
+            <div class="col-sm-4 col-sm-offset-4">
+
+                <!-- LOOP OVER THE TODOS IN $scope.todos -->
+                <div class="checkbox" ng-repeat="user in User">
+                    <label>
+                        <input type="checkbox" ng-click="deleteUser(user._id)"> {{ user.text }}
+                    </label>
+                </div>
+
+                <p class="text-center" ng-show="loading">
+                    <span class="fa fa-spinner fa-spin fa-3x"></span>
+                </p>
+
+            </div>
+        </div>
+
+        <div id="todo-form" class="row">
+            <div class="col-sm-8 col-sm-offset-2 text-center">
+                <form>
+                    <div class="form-group">
+
+                        <p>
+                        <label for="user_ID">账号 :</label>
+                        <input type="text" class="form-control input-lg text-center"  placeholder="账号"
+                        ng-model="userData.user_ID">
+                        </p>
+                        <p>
+                        <label for="user_ID">密码 :</label>
+                        <input type="text" class="form-control input-lg text-center" placeholder="账号" ng-model="userData.user_PWD">
+                        </p><p>
+                        <label for="name">姓名 :</label>
+                        <input type="text" class="form-control input-lg text-center" placeholder="姓名" ng-model="userData.name">
+                         </p>
+                         <p>
+                         <label for="ContactMethod">联系方式 :</label>
+                         <input type="text" class="form-control input-lg text-center" placeholder="联系方式" ng-model="userData.ContactMethod">
+                         </p>
+                    </div>
+
+                    <!-- createToDo() WILL CREATE NEW TODOS -->
+                    <button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Submit</button>
+                    <p>
+                    <a href="./login.html"> 到登陆界面 </a>
+                   </p>
+                </form>
+            </div>
+        </div>
+
+            
+            </div>
+        </body>
+</html>

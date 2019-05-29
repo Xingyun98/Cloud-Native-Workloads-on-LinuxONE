@@ -48,7 +48,7 @@ angular.module('todoController', [])
 				});
 		};
 	}])
-/*
+
 // inject the Todo service factory into our controller
 	.controller('userController', ['$scope','$http','Users', function($scope, $http, Users) {
 		$scope.userData = {};
@@ -69,7 +69,7 @@ angular.module('todoController', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.userData.name != undefined) {
+			if ($scope.userData.ID != undefined) {
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
@@ -148,4 +148,3 @@ angular.module('todoController', [])
 				});
 		};
 	}]);
-*/
