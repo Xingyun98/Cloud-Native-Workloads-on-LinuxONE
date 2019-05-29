@@ -4,6 +4,30 @@ var router = express.Router();
 var users = require('./models/user');
 var wishes = require('./models/wish');
 
+function insertUser()
+{
+    var user=new users(
+    {
+        user_ID:'123',
+        user_PWD: '123',
+        name:'Xingyun6',
+        ContactMethod:'15521117337',
+        Rank:100,
+        bonus:1000,
+        createAT: new Date()
+    });
+
+    user.save(function(err,res)
+    {
+        if(err)
+            console.log("Error:" + err);
+        else 
+            console.log("Res:" + res);
+    });
+}//end insertUser
+
+insertUser();
+
 function getTodos(res) 
 {
     Todo.find(function (err, todos) {
@@ -155,7 +179,7 @@ module.exports = function (app)
 
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/public/register.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
 

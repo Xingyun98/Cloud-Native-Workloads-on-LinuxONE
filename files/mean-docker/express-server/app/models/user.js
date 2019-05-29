@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-var userSchema = new Schema({
+
+module.exports = mongoose.model('user',{
 	user_ID: {
         type: String,
         default: ''
@@ -33,11 +33,11 @@ var userSchema = new Schema({
 
     createAT:{
     	type:Date,
-    	default:Date.now()
+    	default:''
     }
 
 });
 
 
-// 将数据模型暴露出去
-module.exports = mongoose.model('user',userSchema);
+
+
