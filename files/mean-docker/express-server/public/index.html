@@ -21,9 +21,9 @@
 
 	<!-- SPELLS -->
 	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
-	<script src="js/controllers/main_user.js"></script> <!-- load up our controller -->
-	<!--<script src="js/services/todos.js"></script> --><!-- load our todo service -->
-	<!--<script src="js/core.js"></script> --> <!-- load our main application -->
+	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
+	<script src="js/services/todos.js"></script><!-- load our todo service -->
+	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER -->
@@ -61,9 +61,9 @@
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.name">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="userData.name">
 
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.user_PWD">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="userData.user_PWD">
 
 					</div>
 

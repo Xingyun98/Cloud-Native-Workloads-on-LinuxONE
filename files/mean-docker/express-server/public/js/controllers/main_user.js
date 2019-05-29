@@ -1,5 +1,5 @@
-var mainUser=angular.module("mainUser",[]);
-mainUser.factory('Users', ['$http',function($http) {
+angular.module("mainUser",[])
+   .factory('Users', ['$http',function($http) {
 		return {
 			get : function() {
 				return $http.get('/api/User');
@@ -11,9 +11,8 @@ mainUser.factory('Users', ['$http',function($http) {
 				return $http.delete('/api/User/' + id);
 			}
 		}
-	}]);
-
-mainUser.controller('UserController', ['$scope','$http','Users', function($scope, $http, Users) {
+	}])
+   .controller('UserController', ['$scope','$http','Users', function($scope, $http, Users) {
 		$scope.formData = {};
 		$scope.loading = true;
 
