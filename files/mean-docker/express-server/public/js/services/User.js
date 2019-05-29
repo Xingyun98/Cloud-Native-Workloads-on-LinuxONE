@@ -8,7 +8,7 @@ angular.module('userService', [])
 				return $http.get('/api/User');
 			},
 			create : function(userData) {
-				return $http.post('/api/User', UserData);
+				return $http.post('/api/User', userData);
 			},
 			delete : function(id) {
 				return $http.delete('/api/User/' + id);

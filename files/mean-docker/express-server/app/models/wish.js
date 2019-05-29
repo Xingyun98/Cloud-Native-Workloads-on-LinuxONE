@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 //Define the schema
-module.exports=mongoose.module('wish', {
+module.exports = mongoose.model('wish', {
 	wish_ID:{
 		type:String,
 		default:''

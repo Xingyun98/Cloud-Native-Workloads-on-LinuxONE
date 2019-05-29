@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanUser">
+<html ng-app="meanTodo">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -21,22 +21,19 @@
 
 	<!-- SPELLS -->
 	<script src="//cdn.bootcss.com/angular.js/1.2.16/angular.min.js"></script><!-- load angular -->
-
 	<script src="js/controllers/main.js"></script> <!-- load up our controller -->
 	<script src="js/services/todos.js"></script> <!-- load our todo service -->
-	<script src="js/services/User.js"></script> <!-- load our todo service -->
-	<script src="js/services/Wish.js"></script> <!-- load our todo service -->
 	<script src="js/core.js"></script> <!-- load our main application -->
 
 </head>
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="UserController"><!--mainController-->
+<body ng-controller="userController"><!--mainController-->
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
 		<div class="jumbotron text-center">
-			<h1>Hi let us make an app for Xingyun6<span class="label label-info">{{ todos.length }}</span></h1>
+			<h1>Hi let us make an app for Xingyun6<span class="label label-info">{{ User.length }}</span></h1>
 		</div>
 
 		<!-- TODO LIST -->
