@@ -1,7 +1,7 @@
 <!doctype html>
 
 <!-- ASSIGN OUR ANGULAR MODULE -->
-<html ng-app="meanTodo">
+<html ng-app="meanUser">
 <head>
 	<!-- META -->
 	<meta charset="utf-8">
@@ -31,7 +31,7 @@
 </head>
 <!-- SET THE CONTROLLER -->
 
-<body ng-controller="todoController"><!--mainController-->
+<body ng-controller="UserController"><!--mainController-->
 	<div class="container">
 
 		<!-- HEADER AND TODO COUNT -->
@@ -40,13 +40,13 @@
 		</div>
 
 		<!-- TODO LIST -->
-		<div id="toso-list" class="row">
+		<div id="todo-list" class="row">
 			<div class="col-sm-4 col-sm-offset-4">
 
 				<!-- LOOP OVER THE TODOS IN $scope.todos -->
-				<div class="checkbox" ng-repeat="todo in Todo">
+				<div class="checkbox" ng-repeat="user in User">
 					<label>
-						<input type="checkbox" ng-click="deleteTodo(todo._id)"> {{ todo.text }}
+						<input type="checkbox" ng-click="deleteUser(user._id)"> {{ user.name }}
 					</label>
 				</div>
 
@@ -58,20 +58,20 @@
 		</div>
 
 		<!-- FORM TO CREATE TODOS -->
-		<div id="user-form" class="row">
+		<div id="todo-form" class="row">
 			<div class="col-sm-8 col-sm-offset-2 text-center">
 				<form>
 					<div class="form-group">
 
 						<!-- BIND THIS VALUE TO formData.text IN ANGULAR -->
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.text">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's text here" ng-model="formData.name">
 
-						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.value">
+						<input type="text" class="form-control input-lg text-center" placeholder="todo's value here" ng-model="formData.user_PWD">
 
 					</div>
 
 					<!-- createToDo() WILL CREATE NEW TODOS -->
-					<button type="submit" class="btn btn-primary btn-lg" ng-click="createTodo()">Submit</button>
+					<button type="submit" class="btn btn-primary btn-lg" ng-click="createUser()">Submit</button>
 					<p>
                     <a href="./login.html"> 到登陆界面 </a>
                    </p>
