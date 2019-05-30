@@ -65,7 +65,7 @@ angular.module('todoController', [])
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
-		$scope.creatUser = function() {
+		$scope.createUser = function() {
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
@@ -115,7 +115,7 @@ angular.module('todoController', [])
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
-		$scope.creatWish = function() {
+		$scope.createWish = function() {
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
