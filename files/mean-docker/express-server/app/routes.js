@@ -1,20 +1,18 @@
 var Todo = require('./models/todo');
 var express = require('express');//引入express
 var router = express.Router();
-var users = require('./models/user');
+var User = require('./models/user');
 var wishes = require('./models/wish');
 
 function insertUser()
 {
-    var user=new users(
+    var user=new User(
     {
-        user_ID:'123',
-        user_PWD: '123',
-        name:'Xingyun6',
-        ContactMethod:'15521117337',
-        Rank:100,
+        user_name: req.body.user_name,
+        code: req.body.code,
+        email: req.body.email,
+        rank: 0,
         bonus:1000,
-        createAT: new Date()
     });
 
     user.save(function(err,res)
@@ -77,7 +75,7 @@ module.exports = function (app)
         getTodos(res);
     });
 
-    app.get('/api/User', function (req, res) {
+    app.get('/api/user', function (req, res) {
         // use mongoose to get all todos in the database
         getUser(res);
     });
@@ -104,18 +102,16 @@ module.exports = function (app)
         });
     });
 
-    app.post('/api/User', function (req, res) {
+    app.post('/api/user', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
         users.create({
-            user_ID: req.body.user_ID,
-            user_PWD: req.body.user_PWD,
-            name: req.body.name,
-            ContactMethod: req.body.ContactMethod,
-            Rank: req.body.Rank,
-            bonus: req.body.bonus,
-            createAt: req.body.createAt,
-            done: false
+            user_name: req.body.user_name,
+            code: req.body.code,
+            email: req.body.email,
+            rank: 0,
+            bonus:1000,
+            done:0
         }, function (err, user) {
             if (err)
                 res.send(err);
@@ -156,7 +152,7 @@ module.exports = function (app)
         });
     });
 
-    app.delete('/api/User/:user_id', function (req, res) {
+    app.delete('/api/user/:user_id', function (req, res) {
         users.remove({
             _id: req.params.user_id
         }, function (err, user) {

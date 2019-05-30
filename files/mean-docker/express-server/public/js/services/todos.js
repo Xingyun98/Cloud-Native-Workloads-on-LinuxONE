@@ -1,4 +1,4 @@
-angular.module('todoService', [])
+angular.module('worryShopServer', [])
 
 	// super simple service
 	// each function returns a promise object
@@ -19,13 +19,13 @@ angular.module('todoService', [])
 	.factory('Users', ['$http',function($http) {
 		return {
 			get : function() {
-				return $http.get('/api/User');
+				return $http.get('/api/user');
 			},
 			create : function(userData) {
-				return $http.post('/api/User', userData);
+				return $http.post('/api/user', userData);
 			},
 			delete : function(id) {
-				return $http.delete('/api/User/' + id);
+				return $http.delete('/api/user/' + id);
 			}
 		}
 	}])
