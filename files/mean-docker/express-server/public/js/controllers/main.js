@@ -53,7 +53,8 @@ angular.module('todoController', [])
 	.controller('userController', ['$scope','$http','Users', function($scope, $http, Users) {
 		$scope.userData = {};
 		$scope.loading = true;
-
+		$scope.pw;
+		
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -62,6 +63,7 @@ angular.module('todoController', [])
 				$scope.User = data;
 				$scope.loading = false;
 			});
+
 
 		// CREATE ==================================================================
 		// when submitting the add form, send the text to the node API
