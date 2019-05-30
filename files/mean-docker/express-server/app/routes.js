@@ -41,7 +41,7 @@ function getTodos(res)
 
 function getUser(res) 
 {
-    users.find(function (err, User) {
+    User.find(function (err, User) {
 
         // if there is an error retrieving, send the error. nothing after res.send(err) will execute
         if (err) {
@@ -105,7 +105,7 @@ module.exports = function (app)
     app.post('/api/user', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
-        users.create({
+        User.create({
             user_name: req.body.user_name,
             code: req.body.code,
             email: req.body.email,
@@ -153,7 +153,7 @@ module.exports = function (app)
     });
 
     app.delete('/api/user/:user_id', function (req, res) {
-        users.remove({
+        User.remove({
             _id: req.params.user_id
         }, function (err, user) {
             if (err)
