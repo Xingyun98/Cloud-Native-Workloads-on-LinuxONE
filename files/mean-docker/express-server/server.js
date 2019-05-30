@@ -1,6 +1,6 @@
 // set up ======================================================================
-var express = require('express');//引入express
-var app = express(); //搭建应用					// create our app w/ express
+var express = require('express');
+var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
 var port = process.env.PORT || 8080; 				// set the port
 var database = require('./config/database'); 			// load the database config

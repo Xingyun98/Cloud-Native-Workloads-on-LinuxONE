@@ -1,143 +1,79 @@
-var Todo = require('./models/todo');
-var express = require('express');//引入express
-var router = express.Router();
 var User = require('./models/user');
-var wishes = require('./models/wish');
+var Wish = require('./models/wish')
 
-function insertUser()
-{
-    var user=new User(
-    {
-        user_name: "Xingyun6",
-        code: "123456",
-        email: "2723288006@qq.com",
-        rank: 0,
-        bonus:1000
+function getUsers(res) {
+    User.find(function (err, users) {
+
+        if (err)
+            res.send(err);
+
+        res.json(users);
     });
+};
 
-    user.save(function(err,res)
-    {
+function getWishes(res) {
+    Wish.find(function (err, wishes) {
+        if (err)
+            res.send(err);
+        res.json(wishes);
+    });
+};
+function getWishesByUser_name(req){
+    //找到某个人的所有愿望
+    Wish.find({user_name: req.body.user_name}, function(err,wishes){
         if(err)
-            console.log("Error:" + err);
-        else 
-            console.log("Res:" + res);
-    });
-}//end insertUser
-
-insertUser();
-
-function getTodos(res) 
-{
-    Todo.find(function (err, todos) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
             res.send(err);
-        }
-
-        res.json(todos); // return all todos in JSON format
+        res.json(wishes);
     });
-};//end function getTodos
+}
 
-function getUser(res) 
-{
-    User.find(function (err, User) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(User); // return all User in JSON format
-    });
-};//end function getUser
-
-function getWish(res) 
-{
-    wishes.find(function (err, Wish) {
-
-        // if there is an error retrieving, send the error. nothing after res.send(err) will execute
-        if (err) {
-            res.send(err);
-        }
-
-        res.json(Wish); // return all todos in JSON format
-    });
-};//end function getWish
-
-module.exports = function (app) 
-{
-
-    // api ---------------------------------------------------------------------
-    // get all todos
-    app.get('/api/todos', function (req, res) {
+module.exports = function (app) {
+   
+    app.getYourWishes('/api/wishes', function(req, res){
+        getWishesByUser_name(req)
+    })
+    app.get('/api/users', function (req, res) {
         // use mongoose to get all todos in the database
-        getTodos(res);
+        getUsers(res);
     });
 
-    app.get('/api/user', function (req, res) {
+    app.get('/api/wishes', function (req, res) {
         // use mongoose to get all todos in the database
-        getUser(res);
+        getWishes(res);
     });
 
-     app.get('/api/Wish', function (req, res) {
-        // use mongoose to get all todos in the database
-        getWish(res);
-    });
 
-    // create todo and send back all todos after creation
-    app.post('/api/todos', function (req, res) {
-
-        // create a todo, information comes from AJAX request from Angular
-        Todo.create({
-            text: req.body.text,
-            value: req.body.value,
-            done: false
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            // get and return all the todos after you create another
-            getTodos(res);
-        });
-    });
-
-    app.post('/api/user', function (req, res) {
-
+    app.post('/api/users', function (req, res) {
+        console.log('POST IN IS');
         // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
             code: req.body.code,
             email: req.body.email,
             rank: 0,
-            bonus:1000,
-            done:0
         }, function (err, user) {
             if (err)
                 res.send(err);
-
-            // get and return all the todos after you create another
-            getUser(res);
         });
+
     });
 
-    // create todo and send back all todos after creation
-    app.post('/api/Wish', function (req, res) {
+    app.post('/api/wishes', function (req, res) {
 
         // create a todo, information comes from AJAX request from Angular
-        wishes.create({
-            wish_ID: req.body.Wish_ID,
+        Wish.create({
+            user_id: req.body.user_id,
+            wish_id: req.body.wish_id,
             description: req.body.description,
             publish_date: req.body.publish_date,
-            DDL: req.body.DDL,
+            ddl: req.body.ddl,
             bonus: req.body.bonus,
             done: false
         }, function (err, wish) {
             if (err)
                 res.send(err);
-            // get and return all the todos after you create another
-            getWish(res);
         });
+
     });
 
     // delete a todo
@@ -152,88 +88,29 @@ module.exports = function (app)
         });
     });
 
-    app.delete('/api/user/:user_id', function (req, res) {
+    app.delete('/api/users/:user_id', function (req, res) {
         User.remove({
             _id: req.params.user_id
         }, function (err, user) {
             if (err)
                 res.send(err);
-            getUser(res);
+
+            getUsers(res);
         });
     });
 
-     app.delete('/api/Wish/:wish_id', function (req, res) {
-        wishes.remove({
+    app.delete('/api/wishes/:wish_id', function (req, res) {
+        Wish.remove({
             _id: req.params.wish_id
-        }, function (err, todo) {
+        }, function (err, wish) {
             if (err)
                 res.send(err);
 
-            getWish(res);
+            getWishes(res);
         });
     });
-
     // application -------------------------------------------------------------
     app.get('*', function (req, res) {
-        res.sendFile(__dirname + '/public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+        res.sendFile('../public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
-
-
-/*
-router.get('/login', function (req, res) {
-    res.render('login');
-});
-router.get('/register', function (req, res) {
-    res.render('register');
-});
-
-router.post('/register', function (req, res) {
-
- // 获取用户提交的信息
-    var postData = {
-        user_ID: req.body.user_ID,
-        user_PWD: req.body.user_PWD,
-        name: req.body.name,
-        ContactMethod: req.body.ContactMethod
-    };
-    // 查询是否被注册
-    users.findOne({user_ID: postData.user_ID}, function (err, data) {
-        if (User) {
-            res.send('用户名已被注册');
-        } else {
-            // 保存到数据库
-            User.create(postData, function (err, data) {
-                if (err)  res.send(err);
-                console.log('注册成功');
-                res.redirect('/api/User');      // 重定向到所用用户列表
-            })
-        }
-    });//end findOne
-});//end post
-
-// 获取所有用户列表
-router.get('/api/User', function (req, res) {
-    var userList = users.find({}, function (err, data) {
-        if (err) res.send(err);
-        res.send(data)
-    });
-});
-router.post('/login', function (req, res) {
-    var postData = {
-        user_ID: req.body.username,
-        user_PWD: req.body.password
-    };
-    users.findOne({
-        name: postData.name,
-        user_PWD: postData.user_PWD
-    }, function (err, data) {
-        if(err) res.send(err);
-        if(data){
-            res.send('登录成功');
-        }else{
-            res.send('账号或密码错误')
-        }
-    } )
-});
-*/

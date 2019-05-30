@@ -80,7 +80,7 @@
           <form class="form-group" action="">
             <div class="form-group">
               <label for="">用户名</label>
-              <input class="form-control" type="text" placeholder="">
+              <input class="form-control" type="text" placeholder="" ng-model="">
             </div>
             <div class="form-group">
               <label for="">密码</label>
@@ -112,13 +112,10 @@
   </div>
   <div class="row">
     <ul class="list-group col-md-6">
-      <li class="list-group-item">鹰眼</li>
-      <li class="list-group-item">女帝</li>
-      <li class="list-group-item">堂吉诃德</li>
-      <li class="list-group-item">沙鳄</li>
-      <li class="list-group-item">海侠</li>
-      <li class="list-group-item">莫利亚</li>
-      <li class="list-group-item">大熊</li>
+      <li class="list-group-item" ng-repeat="wish in wishes" ng-model="user_name">
+        {{wish.title}}
+      </li>
+
     </ul>
     <ul class="list-group col-md-6">
       <li class="list-group-item">鹰眼</li>
