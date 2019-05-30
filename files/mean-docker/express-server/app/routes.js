@@ -8,11 +8,11 @@ function insertUser()
 {
     var user=new User(
     {
-        user_name: req.body.user_name,
-        code: req.body.code,
-        email: req.body.email,
+        user_name: "Xingyun6",
+        code: "123456",
+        email: "2723288006@qq.com",
         rank: 0,
-        bonus:1000,
+        bonus:1000
     });
 
     user.save(function(err,res)

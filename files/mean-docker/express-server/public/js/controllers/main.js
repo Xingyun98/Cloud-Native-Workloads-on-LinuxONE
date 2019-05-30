@@ -48,7 +48,7 @@ angular.module('todoController', [])
 				});
 		};
 	}])
-
+/*
 // inject the Todo service factory into our controller
 	.controller('userController', ['$scope','$http','Users', function($scope, $http, Users) {
 		$scope.userData = {};
@@ -100,7 +100,7 @@ angular.module('todoController', [])
 				});
 		};
 	}])
-
+*/
 	// inject the Todo service factory into our controller
 	.controller('wishController', ['$scope','$http','Wishes', function($scope, $http, Users) {
 		$scope.formData = {};
