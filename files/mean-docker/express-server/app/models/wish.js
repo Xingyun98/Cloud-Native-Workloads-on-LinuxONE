@@ -8,9 +8,10 @@ module.exports = mongoose.model('Wish', {
     },
 
     get_by_user: {
-        type: string,
+        type: String,
         default: ''
     },
+    
     title: {
         type: String,
         default: ''

@@ -22,4 +22,9 @@ module.exports = mongoose.model('User', {
         default: 0
     }
 
+    bonus: {
+        type: Number,
+        default: 0
+    }
+
 });

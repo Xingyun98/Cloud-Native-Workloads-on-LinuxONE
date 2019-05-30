@@ -1,7 +1,9 @@
 angular.module('Controller', [])
-	.controller('Register', ['$scope', '$http', 'Users', function ($scope, $http, Users) {
+	.controller('Register', ['$scope', '$http', 'Users', "$rootScope", function ($scope, $http, $rootScope, Users) {
 		$scope.fromUserData = {};
 		$scope.registering = false;
+		$rootScope.loginName;
+		$scope.codeAgain;
 
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
@@ -23,6 +25,7 @@ angular.module('Controller', [])
 			if ($scope.fromUserData.user_name != undefined) {
 				console.log("I'm in.");
 				$scope.registering = true;
+				$rootScope.loginName=$fromUserData.user_name;
 
 				// call the create function from our service (returns a promise object)
 				Users.create($scope.fromUserData)
@@ -107,11 +110,10 @@ angular.module('Controller', [])
 		};
 
 	}])
-	.controller('wishController', ['$scope','$http','Wishes', function($scope, $http,  $rootScope,Wishes) {
+	.controller('wishController', ['$scope','$http',"$rootScope",'Wishes', function($scope, $http , $rootScope, Wishes) {
 		$scope.formData = {};
 		$scope.loading = true;
-		$rootScope.name;
-
+		$scope.formData.user_name=$rootScope.loginName;
 		// GET =====================================================================
 		// when landing on the page, get all todos and show them
 		// use the service to get all the todos
@@ -125,7 +127,7 @@ angular.module('Controller', [])
 		$scope.getYourWishes = function(){
 			//登陆之后再调用，不用验证user_name的存在
 			$scope.loading = true;
-			Wishes.getYourWishes($scope.formData.user_name)
+			Wishes.getYourWishes($rootScope.loginName)
 				.success(function(data){
 					$scope.loading = false;
 					$scope.formData = {};
@@ -138,7 +140,7 @@ angular.module('Controller', [])
 
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
-			if ($scope.formData.wish_id != undefined) {
+			if ($scope.formData.title != undefined && $scope.formData.description != undefined) {
 				$scope.loading = true;
 
 				// call the create function from our service (returns a promise object)
@@ -169,7 +171,7 @@ angular.module('Controller', [])
 				});
 		};
 
-		$scope.findWishesByUser_name()=function(user_name){
+		$scope.findWishesByUser_name()=function(){
 
 		}
 	}]);

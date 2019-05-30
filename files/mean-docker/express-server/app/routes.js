@@ -51,6 +51,7 @@ module.exports = function (app) {
             code: req.body.code,
             email: req.body.email,
             rank: 0,
+            bonus:10,
         }, function (err, user) {
             if (err)
                 res.send(err);
