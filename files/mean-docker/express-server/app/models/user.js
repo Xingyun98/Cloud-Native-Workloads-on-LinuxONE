@@ -20,11 +20,11 @@ module.exports = mongoose.model('User', {
     rank: {
         type: Number,
         default: 0
-    }
+    },
 
     bonus: {
         type: Number,
-        default: 0
+        default: 10
     }
 
 });

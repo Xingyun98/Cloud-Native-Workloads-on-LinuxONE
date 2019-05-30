@@ -29,7 +29,7 @@ function getWishesByUser_name(req){
 
 module.exports = function (app) {
    
-    app.getYourWishes('/api/wishes', function(req, res){
+    app.get('/api/user_wishes', function(req, res){
         getWishesByUser_name(req)
     })
     app.get('/api/users', function (req, res) {

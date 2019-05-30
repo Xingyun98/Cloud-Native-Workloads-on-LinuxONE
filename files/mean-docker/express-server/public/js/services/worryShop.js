@@ -25,7 +25,7 @@ angular.module('worryShopServer', [])
 				return $http.delete('/api/wishes/' + id);
 			},
 			getYourWishes: function(user_name){
-				return $http.getYourWishes('/api/wishes'+user_name);
+				return $http.get('/api/user_wishes'+user_name);
 			}
 		}
 	}]);
