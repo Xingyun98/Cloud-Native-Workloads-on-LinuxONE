@@ -65,18 +65,7 @@ module.exports = function (app) {
 
     });
 
-    // delete a todo
-    app.delete('/api/todos/:todo_id', function (req, res) {
-        Todo.remove({
-            _id: req.params.todo_id
-        }, function (err, todo) {
-            if (err)
-                res.send(err);
-
-            getTodos(res);
-        });
-    });
-
+  
     app.delete('/api/users/:user_id', function (req, res) {
         User.remove({
             _id: req.params.user_id
