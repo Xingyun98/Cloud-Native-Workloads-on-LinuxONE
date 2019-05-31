@@ -6,13 +6,7 @@ module.exports = mongoose.model('Wish', {
         type: String,
         default: ''
     },
-
-    get_by_user: {
-        type: String,
-        default: ''
-    },
-    
-    title: {
+    wish_id: {
         type: String,
         default: ''
     },
@@ -27,18 +21,13 @@ module.exports = mongoose.model('Wish', {
         default: Date.now()
     },
 
+    ddl: {
+        type: Date,
+        default: ''
+    },
+
     bonus: {
         type: Number,
         default: ''
-    },
-    
-    isGet: {
-        type: Boolean,
-        default: false
-    },
-
-    isFinished: {
-        type: Boolean,
-        default: false
     }
 });

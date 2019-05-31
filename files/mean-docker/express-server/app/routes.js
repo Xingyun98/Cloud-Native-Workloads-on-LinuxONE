@@ -18,20 +18,8 @@ function getWishes(res) {
         res.json(wishes);
     });
 };
-function getWishesByUser_name(req){
-    //找到某个人的所有愿望
-    Wish.find({user_name: req.body.user_name}, function(err,wishes){
-        if(err)
-            res.send(err);
-        res.json(wishes);
-    });
-}
 
 module.exports = function (app) {
-   
-    app.get('/api/user_wishes', function(req, res){
-        getWishesByUser_name(req)
-    })
     app.get('/api/users', function (req, res) {
         // use mongoose to get all todos in the database
         getUsers(res);
@@ -42,19 +30,19 @@ module.exports = function (app) {
         getWishes(res);
     });
 
-
     app.post('/api/users', function (req, res) {
-        console.log('POST IN IS');
-        // create a todo, information comes from AJAX request from Angular
         User.create({
             user_name: req.body.user_name,
             code: req.body.code,
             email: req.body.email,
             rank: 0,
-            bonus:10,
+            done: false
         }, function (err, user) {
             if (err)
                 res.send(err);
+
+            // get and return all the todos after you create another
+            getUsers(res);
         });
 
     });
@@ -109,9 +97,5 @@ module.exports = function (app) {
 
             getWishes(res);
         });
-    });
-    // application -------------------------------------------------------------
-    app.get('*', function (req, res) {
-        res.sendFile('../public/login.html'); // load the single view file (angular will handle the page changes on the front-end)
     });
 };
